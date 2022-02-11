@@ -35,13 +35,13 @@ public class Account {
 		boolean result = true;
 
 		// is amount invalid?
-		if (amount < 0) {
+		if (amount <= 0) {
 			result = false;
 		} else {
 			balance = balance + amount;
 		}
 
-		return false;
+		return result;
 	}
 
 	/**
@@ -55,23 +55,24 @@ public class Account {
 
 		if (isValid(amount)) {
 			balance = balance - amount;
+			return true;
+		}else {
+			return false;
 		}
-
-		return isValid(amount);
 	}
 
 	/**
 	 * Determine if withdrawal parameters are valid
 	 */
 	private boolean isValid(double amount) {
-		return amount >= 0 && amount <= balance;
+		return amount > 0 && amount <= balance;
 	}
 
 	/**
 	 * Adds interest to the account.
 	 */
 	public void addInterest() {
-		balance = balance - (balance * interestRate);
+		balance = balance + (balance * interestRate);
 	}
 
 	/**
